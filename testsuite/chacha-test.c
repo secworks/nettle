@@ -1,6 +1,6 @@
 /* chacha-test.c
  *
- * Test of the ChaCha stream cipher implementation.
+ * Test program for the ChaCha stream cipher implementation.
  */
 
 /* nettle, low-level cryptographics library
