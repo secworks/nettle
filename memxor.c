@@ -54,6 +54,10 @@ typedef unsigned long int word_t;
 
 #define WORD_T_THRESH 16
 
+/* Defines of sizes here to skip build system for now. */
+#define SIZEOF_LONG sizeof(long)
+
+
 /* XOR word-aligned areas. n is the number of words, not bytes. */
 static void
 memxor_common_alignment (word_t *dst, const word_t *src, size_t n)

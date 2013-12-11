@@ -26,9 +26,11 @@
 /* For size_t */
 #include <stddef.h>
 
+#include <stdint.h>
+
 /* Pretend these types always exists. Nettle doesn't use them. */
 #define _STDINT_HAVE_INT_FAST32_T 1
-#include "nettle-stdint.h"
+//#include "nettle-stdint.h"
 
 #ifdef __cplusplus
 extern "C" {
