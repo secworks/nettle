@@ -83,7 +83,7 @@
 void
 _chacha_core(uint32_t *dst, const uint32_t *src, unsigned rounds)
 {
-  uint32_t x[_CHACHA_INPUT_LENGTH];
+  uint32_t x[_CHACHA_STATE_LENGTH];
   unsigned i;
 
   assert ( (rounds & 1) == 0);
@@ -105,9 +105,16 @@ _chacha_core(uint32_t *dst, const uint32_t *src, unsigned rounds)
     }
   DEBUG (i);
 
-  for (i = 0; i < _CHACHA_INPUT_LENGTH; i++)
+  for (i = 0; i < _CHACHA_STATE_LENGTH; i++)
     {
       uint32_t t = x[i] + src[i];
       dst[i] = LE_SWAP32 (t);
     }
 }
+
+
+
+
+
+
+

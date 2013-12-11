@@ -53,11 +53,11 @@ chacha_crypt(struct chacha_ctx *ctx,
   
   for (;;)
     {
-      uint32_t x[_CHACHA_INPUT_LENGTH];
+      uint32_t x[_CHACHA_STATE_LENGTH];
 
-      _chacha_core (x, ctx->input, ctx->rounds);
+      _chacha_core (x, ctx->state, ctx->rounds);
 
-      ctx->input[9] += (++ctx->input[8] == 0);
+      ctx->state[9] += (++ctx->state[8] == 0);
 
       /* stopping at 2^70 length per nonce is user's responsibility */
       

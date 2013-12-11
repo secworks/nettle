@@ -58,36 +58,36 @@ chacha_set_key(struct chacha_ctx *ctx,
   
   assert (length == CHACHA_MIN_KEY_SIZE || length == CHACHA_MAX_KEY_SIZE);
 
-  ctx->input[4] = LE_READ_UINT32(key + 0);
-  ctx->input[5] = LE_READ_UINT32(key + 4);
-  ctx->input[6] = LE_READ_UINT32(key + 8);
-  ctx->input[7] = LE_READ_UINT32(key + 12);
+  ctx->state[4] = LE_READ_UINT32(key + 0);
+  ctx->state[5] = LE_READ_UINT32(key + 4);
+  ctx->state[6] = LE_READ_UINT32(key + 8);
+  ctx->state[7] = LE_READ_UINT32(key + 12);
   if (length == CHACHA_MAX_KEY_SIZE) { /* recommended */
-    ctx->input[8]  = LE_READ_UINT32(key + 16);
-    ctx->input[9]  = LE_READ_UINT32(key + 20);
-    ctx->input[10] = LE_READ_UINT32(key + 24);
-    ctx->input[11] = LE_READ_UINT32(key + 28);
+    ctx->state[8]  = LE_READ_UINT32(key + 16);
+    ctx->state[9]  = LE_READ_UINT32(key + 20);
+    ctx->state[10] = LE_READ_UINT32(key + 24);
+    ctx->state[11] = LE_READ_UINT32(key + 28);
     constants = sigma;
   } else { /* kbits == 128 */
-    ctx->input[8]  = ctx->input[4];
-    ctx->input[9]  = ctx->input[5];
-    ctx->input[10] = ctx->input[6];
-    ctx->input[11] = ctx->input[7];
+    ctx->state[8]  = ctx->state[4];
+    ctx->state[9]  = ctx->state[5];
+    ctx->state[10] = ctx->state[6];
+    ctx->state[11] = ctx->state[7];
     constants = tau;
   }
-  ctx->input[0] = constants[0];
-  ctx->input[1] = constants[1];
-  ctx->input[2] = constants[2];
-  ctx->input[3] = constants[3];
+  ctx->state[0] = constants[0];
+  ctx->state[1] = constants[1];
+  ctx->state[2] = constants[2];
+  ctx->state[3] = constants[3];
 }
 
 void
 chacha_set_iv(struct chacha_ctx *ctx, const uint8_t *iv)
 {
-  ctx->input[12] = 0;
-  ctx->input[13] = 0;
-  ctx->input[14] = LE_READ_UINT32(iv + 0);
-  ctx->input[15] = LE_READ_UINT32(iv + 4);
+  ctx->state[12] = 0;
+  ctx->state[13] = 0;
+  ctx->state[14] = LE_READ_UINT32(iv + 0);
+  ctx->state[15] = LE_READ_UINT32(iv + 4);
 }
 
 void

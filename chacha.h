@@ -41,8 +41,8 @@ extern "C" {
 #define chacha_crypt nettle_chacha_crypt
 #define _chacha_core _nettle_chacha_core
 
-/* Minimum and maximum keysizes, and a reasonable default. In
- * octets.*/
+/* Minimum and maximum keysizes, and a reasonable default. 
+   In octets. */
 #define CHACHA_MIN_KEY_SIZE 16
 #define CHACHA_MAX_KEY_SIZE 32
 #define CHACHA_KEY_SIZE 32
@@ -52,7 +52,7 @@ extern "C" {
 
 #define CHACHA_NUM_ROUNDS 8
 
-#define _CHACHA_INPUT_LENGTH 16
+#define _CHACHA_STATE_LENGTH 16
 
 struct chacha_ctx
 {
@@ -67,7 +67,7 @@ struct chacha_ctx
      K K K K
      B B I I
   */
-  uint32_t input[_CHACHA_INPUT_LENGTH];
+  uint32_t state[_CHACHA_STATE_LENGTH];
   uint8_t rounds;
 };
 
