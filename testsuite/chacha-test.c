@@ -82,5 +82,6 @@ int main(void)
   test_chacha(tc1_key, tc1_iv, tc1_expected, tc1_keylength, tc1_rounds); 
 
 
+  return 0;
 }
 
