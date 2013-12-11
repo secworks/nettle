@@ -25,11 +25,10 @@
  */
 
 #include <stdio.h>
-#include "../nettle.h"
+#include "chacha.h"
 
-void test_chacha(uint8_t *key, uint8_t *iv, uint8_t *expected, 
-                uint8_t keylength, uint8_t rounds);
-{
+void test_chacha(const uint8_t *key, const uint8_t *iv, uint8_t *expected, 
+                uint8_t keylength, uint8_t rounds) {
     uint8_t cipher_data[64] =  {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                                 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -48,12 +47,12 @@ void test_chacha(uint8_t *key, uint8_t *iv, uint8_t *expected,
                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
                                  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
     
-    chacha_ctx cipher_ctx;
+    struct chacha_ctx cipher_ctx;
     
-    chacha_set_key(&cipher_ctx, keylength, &key);
-    chacha_set_key(&cipher_ctx, &iv);
+    chacha_set_key(&cipher_ctx, keylength, key);
+    chacha_set_iv(&cipher_ctx, iv);
     chacha_set_rounds(&cipher_ctx, rounds);
-    chacha_crypt(&cipher_ctx, 64, &cipher_result, cipher_data);
+    chacha_crypt(&cipher_ctx, 64, &cipher_result[0], &cipher_data[0]);
     
     // TODO add comparison between excpected and cipher_result
 }
@@ -64,9 +63,9 @@ int main(void)
   /* Test vectors from draft-strombergson-chacha-test-vectors */
   
   uint8_t tc1_key[32] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-                         0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+                               0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                               0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                               0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
   uint8_t tc1_iv[8]   = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
   uint8_t tc1_expected[64] = {0xe2, 0x8a, 0x5f, 0xa4, 0xa6, 0x7f, 0x8c, 0x5d,
                               0xef, 0xed, 0x3e, 0x6f, 0xb7, 0x30, 0x34, 0x86,
@@ -79,7 +78,7 @@ int main(void)
 
   uint8_t tc1_keylength = 16;
   uint8_t tc1_rounds = 8;
-  test_chacha(tc1_key, tc1_iv, tc1_expected, tc1_keylength, tc1_rounds); 
+  test_chacha(&tc1_key[0], &tc1_iv[0], &tc1_expected[0], tc1_keylength, tc1_rounds); 
 
 
   return 0;
