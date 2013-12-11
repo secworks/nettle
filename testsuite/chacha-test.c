@@ -60,6 +60,8 @@ void test_chacha(const uint8_t *key, const uint8_t *iv, uint8_t *expected,
 
 int main(void)
 {
+  printf("Test of chacha nettle implementation.\n");
+
   /* Test vectors from draft-strombergson-chacha-test-vectors */
   
   uint8_t tc1_key[32] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
