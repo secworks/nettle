@@ -82,6 +82,14 @@ chacha_crypt(struct chacha_ctx *ctx, size_t length,
              uint8_t rounds, uint8_t *dst, const uint8_t *src);
 
 void
+chachar12_crypt(struct chacha_ctx *ctx, size_t length, 
+                uint8_t *dst, const uint8_t *src);
+
+void
+chachar20_crypt(struct chacha_ctx *ctx, size_t length, 
+                uint8_t *dst, const uint8_t *src);
+
+void
 _chacha_core(uint32_t *dst, const uint32_t *src, uint8_t rounds);
 
 #ifdef __cplusplus

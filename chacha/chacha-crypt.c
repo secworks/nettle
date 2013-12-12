@@ -43,6 +43,22 @@
 #include "memxor.h"
 
 void
+chachar12_crypt(struct chacha_ctx *ctx, size_t length, 
+                uint8_t *dst, const uint8_t *src)
+{
+  chacha_crypt(ctx, length, 12, dst, src);
+}
+
+
+void
+chachar20_crypt(struct chacha_ctx *ctx, size_t length, 
+                uint8_t *dst, const uint8_t *src)
+{
+  chacha_crypt(ctx, length, 20, dst, src);
+}
+
+
+void
 chacha_crypt(struct chacha_ctx *ctx, size_t length, uint8_t rounds,
              uint8_t *c, const uint8_t *m)
 {
