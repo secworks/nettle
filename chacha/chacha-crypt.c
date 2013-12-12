@@ -43,10 +43,8 @@
 #include "memxor.h"
 
 void
-chacha_crypt(struct chacha_ctx *ctx,
-	      size_t length,
-	      uint8_t *c,
-	      const uint8_t *m)
+chacha_crypt(struct chacha_ctx *ctx, size_t length, uint8_t rounds,
+             uint8_t *c, const uint8_t *m)
 {
   if (!length)
     return;
@@ -55,7 +53,7 @@ chacha_crypt(struct chacha_ctx *ctx,
     {
       uint32_t x[_CHACHA_STATE_LENGTH];
 
-      _chacha_core (x, ctx->state, ctx->rounds);
+      _chacha_core (x, ctx->state, rounds);
 
       ctx->state[9] += (++ctx->state[8] == 0);
 

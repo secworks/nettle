@@ -69,8 +69,7 @@ void test_chacha(const uint8_t *key, const uint8_t *iv, uint8_t *expected,
     
     chacha_set_key(&cipher_ctx, keylength, key);
     chacha_set_iv(&cipher_ctx, iv);
-    chacha_set_rounds(&cipher_ctx, rounds);
-    chacha_crypt(&cipher_ctx, 64, &cipher_result[0], &cipher_data[0]);
+    chacha_crypt(&cipher_ctx, 64, rounds, &cipher_result[0], &cipher_data[0]);
 
     if (DEBUG) {
         printf("Result after encryption:\n");

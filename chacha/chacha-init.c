@@ -90,9 +90,3 @@ chacha_set_iv(struct chacha_ctx *ctx, const uint8_t *iv)
   ctx->state[15] = LE_READ_UINT32(iv + 4);
 }
 
-void
-chacha_set_rounds(struct chacha_ctx *ctx, const uint8_t rounds)
-{
-  ctx->rounds = rounds;
-}
-

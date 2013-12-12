@@ -81,7 +81,7 @@
   } while(0)
 
 void
-_chacha_core(uint32_t *dst, const uint32_t *src, unsigned rounds)
+_chacha_core(uint32_t *dst, const uint32_t *src, uint8_t rounds)
 {
   uint32_t x[_CHACHA_STATE_LENGTH];
   unsigned i;
