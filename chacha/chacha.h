@@ -68,7 +68,6 @@ struct chacha_ctx
      B B I I
   */
   uint32_t state[_CHACHA_STATE_LENGTH];
-  uint8_t rounds;
 };
 
 void
@@ -79,15 +78,11 @@ void
 chacha_set_iv(struct chacha_ctx *ctx, const uint8_t *iv);
 
 void
-chacha_set_rounds(struct chacha_ctx *ctx, const uint8_t rounds);
+chacha_crypt(struct chacha_ctx *ctx, size_t length, 
+             uint8_t rounds, uint8_t *dst, const uint8_t *src);
 
 void
-chacha_crypt(struct chacha_ctx *ctx,
-	      size_t length, uint8_t *dst,
-	      const uint8_t *src);
-
-void
-_chacha_core(uint32_t *dst, const uint32_t *src, unsigned rounds);
+_chacha_core(uint32_t *dst, const uint32_t *src, uint8_t rounds);
 
 #ifdef __cplusplus
 }
