@@ -80,6 +80,7 @@ nettle_SOURCES = aes-decrypt-internal.c aes-decrypt.c \
 		 camellia-set-encrypt-key.c camellia-set-decrypt-key.c \
 		 camellia-table.c camellia-meta.c \
 		 cast128.c cast128-meta.c \
+		 chacha-core-internal.c chacha-crypt.c chacha-init.c \
 		 blowfish.c \
 		 cbc.c ctr.c gcm.c gcm-aes.c \
 		 des.c des3.c des-compat.c eax.c \
