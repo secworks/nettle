@@ -13,10 +13,7 @@ of digest.
 
 ## sha512x ##
 Changes to the implementation of SHA-512 in Nettle to add support for
-SHA-512/224 and SHA-512/256 as defined in
-(http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf "NIST FIPS 180-4").
-
-[Apa](http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf) (pdf)
+SHA-512/224 and SHA-512/256 as defined in the NIST document [FIPS 180-4](http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf) (pdf).
 
 
 ## ChaCha ##
