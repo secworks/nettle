@@ -44,6 +44,12 @@ extern "C" {
 #define sha512_update nettle_sha512_update
 #define sha512_digest nettle_sha512_digest
 
+#define sha512_224_init   sha512_224_init  
+#define sha512_224_digest sha512_224_digest
+#define sha512_256_init   sha512_256_init  
+#define sha512_256_digest sha512_256_digest
+
+  
 /* SHA256 */
 
 #define SHA256_DIGEST_SIZE 32
@@ -125,7 +131,8 @@ void
 sha512_digest(struct sha512_ctx *ctx,
 	      size_t length,
 	      uint8_t *digest);
-
+  
+  
 /* Internal compression function. STATE points to 8 uint64_t words,
    DATA points to 128 bytes of input data, possibly unaligned, and K
    points to the table of constants. */
@@ -149,6 +156,25 @@ sha384_digest(struct sha512_ctx *ctx,
 	      size_t length,
 	      uint8_t *digest);
 
+
+/* SHA512_224 and SHA512_256, two truncated versions of SHA512 
+with different initial states. */
+void
+sha512_224_init(struct sha512_ctx *ctx);
+
+void
+sha512_224_digest(struct sha512_ctx *ctx,
+                  size_t length,
+                  uint8_t *digest);
+
+void
+sha512_256_init(struct sha512_ctx *ctx);
+
+void
+sha512_256_digest(struct sha512_ctx *ctx,
+                  size_t length,
+                  uint8_t *digest);
+  
 #ifdef __cplusplus
 }
 #endif
