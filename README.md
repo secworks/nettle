@@ -5,13 +5,13 @@ for each contribution. The subdirs contains enough from Nettle to build,
 test and integrate the feature.
 
 
-## UMACTEST ##
+## umactest ##
 A simple programming for testing and benchmarking the implementation of
 UMAC in Nettle for init, update of nonce, update of state and extraction
 of digest.
 
 
-## SHA512 ##
+## sha512x ##
 Changes to the implementation of SHA-512 in Nettle to add support for
 SHA-512/224 and SHA-512/256 as defined in [NIST FIPS 180-4](http://csrc.nist.gov/publications/fips/fips180-4/fips-180-4.pdf.
 
