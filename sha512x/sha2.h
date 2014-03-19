@@ -44,10 +44,10 @@ extern "C" {
 #define sha512_update nettle_sha512_update
 #define sha512_digest nettle_sha512_digest
 
-#define sha512_224_init   sha512_224_init  
-#define sha512_224_digest sha512_224_digest
-#define sha512_256_init   sha512_256_init  
-#define sha512_256_digest sha512_256_digest
+#define sha512_224_init   nettle_sha512_224_init
+#define sha512_224_digest nettle_sha512_224_digest
+#define sha512_256_init   nettle_sha512_256_init
+#define sha512_256_digest nettle_sha512_256_digest
 
   
 /* SHA256 */
