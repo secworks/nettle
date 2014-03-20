@@ -162,6 +162,8 @@ with different initial states. */
 void
 sha512_224_init(struct sha512_ctx *ctx);
 
+#define sha512_224_update nettle_sha512_update
+
 void
 sha512_224_digest(struct sha512_ctx *ctx,
                   size_t length,
@@ -169,6 +171,8 @@ sha512_224_digest(struct sha512_ctx *ctx,
 
 void
 sha512_256_init(struct sha512_ctx *ctx);
+
+#define sha512_256_update nettle_sha512_update
 
 void
 sha512_256_digest(struct sha512_ctx *ctx,
