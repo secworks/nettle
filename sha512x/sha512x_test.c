@@ -67,6 +67,7 @@ void print_digest(uint8_t length, uint8_t *digest)
 }
 
 //------------------------------------------------------------------
+// compare_digests()
 //------------------------------------------------------------------
 void compare_digests(uint8_t length, uint8_t *digest, uint8_t *expected)
 {
