@@ -12,7 +12,7 @@ NETTLE_INC_PATH = /usr/local/include/nettle
 NETTLE_LIB_PATH = /usr/local/lib
 NETTLE_LIB = nettle
 CC = clang
-CLAGS = -Wall
+CFLAGS = -Wall -O2
 TARGET = umactest
 
 
