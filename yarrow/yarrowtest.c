@@ -180,6 +180,8 @@ void test_yarrow()
   printf("--------------------------------\n");
   print_data(max_rng_bytes, &rng_data[0]);
   printf("\n");
+
+  free(seedptr);
 }
 
 
