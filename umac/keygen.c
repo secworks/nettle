@@ -124,11 +124,22 @@ uint8_t* get_seed_data(uint32_t num_seed_bytes)
   FILE *randomfp;
   uint32_t i;
   uint32_t tmp;
-
   uint8_t *seed_data;
-  seed_data = malloc(num_seed_bytes);
+
+  seed_data = (uint8_t *)calloc(num_seed_bytes, sizeof(uint8_t));
+  if (NULL == seed_data)
+    {
+      printf("Error: Memory allocation failed.\n");
+      exit(1);
+    }
 
   randomfp = fopen("/dev/random", "r");
+  if (NULL == randomfp)
+    {
+      printf("Error: Can't open random number device.\n");
+      exit(1);
+    }
+
   for (i = 0 ; i < num_seed_bytes ; i++)
     {
       tmp = fgetc(randomfp);
