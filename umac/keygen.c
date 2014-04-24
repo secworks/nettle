@@ -151,6 +151,22 @@ uint8_t* get_seed_data(uint32_t num_seed_bytes)
 
 
 //------------------------------------------------------------------
+// gen_key_bytes()
+//
+// Generates num_bytes key data bytes. The bytes is stored
+// pointed to by the given pointer.
+//------------------------------------------------------------------
+void gen_key_bytes(uint32_t num_bytes, uint8_t *key_data)
+{
+  uint32_t max_seed_bytes = 16384;
+  uint8_t *seedptr;
+  
+  seedptr = get_seed_data(max_seed_bytes);
+  run_yarrow(max_seed_bytes, seedptr, num_bytes, &key_data[0]);
+}
+
+
+//------------------------------------------------------------------
 // test_yarrow()
 //
 // Grabs entropy from the system, feeds it to yarrow and
@@ -182,23 +198,6 @@ void test_yarrow()
   free(rng_data);
   rng_data = NULL;
 }
-
-
-//------------------------------------------------------------------
-// gen_key_bytes()
-//
-// Generates num_bytes key data bytes. The bytes is stored
-// pointed to by the given pointer.
-//------------------------------------------------------------------
-void gen_key_bytes(uint32_t num_bytes, uint8_t *key_data)
-{
-  uint32_t max_seed_bytes = 16384;
-  uint8_t *seedptr;
-  
-  seedptr = get_seed_data(max_seed_bytes);
-  run_yarrow(max_seed_bytes, seedptr, num_bytes, &key_data[0]);
-}
-
 
 //======================================================================
 // EOF keygen.c

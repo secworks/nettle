@@ -48,16 +48,6 @@
 
 
 //------------------------------------------------------------------
-// test_yarrow()
-//
-// Uses the Yarrow based generator to generate a block of random
-// data. The seed as well as the generated data is printed to
-// std out.
-//------------------------------------------------------------------
-void test_yarrow();
-
-
-//------------------------------------------------------------------
 // gen_key_bytes()
 //
 // Generates num_bytes key data bytes. The bytes is stored
@@ -65,6 +55,15 @@ void test_yarrow();
 //------------------------------------------------------------------
 void gen_key_bytes(uint32_t num_bytes, uint8_t *key_data);
 
+
+//------------------------------------------------------------------
+// test_yarrow()
+//
+// Uses the Yarrow based generator to generate a block of random
+// data. The seed as well as the generated data is printed to
+// std out.
+//------------------------------------------------------------------
+void test_yarrow();
 
 #endif // _KEYGEN_H_
 
