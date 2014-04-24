@@ -35,20 +35,18 @@
 
 
 //------------------------------------------------------------------
-// get_operands()
+// test_umac()
 //
-// Generates and returns key, nonce and message operands.
-// The key will be of UMAC_KEY_SIZE octets, the nonce will be
-// UMAC_NONCE_SIZE octets and the message will be
-// MESSAGE_SIZE octets.
-//
-// Based on the compile define STATIC_OPERANDS we either use
-// key, nonce and message defined here in the code, or we
-// use the Yarrow PRNG to generate these values before
-// running the test.
+// perform num_messages of umac digest updates and digest
+// extractions using the same key and initial nonce.
 //------------------------------------------------------------------
-void get_operands(uint8_t *key, uint8_t *nonce, uint8_t *message)
+void test_umac(uint32_t num_messages)
 {
+  if (VERBOSE)
+    {
+      printf("Running test_umac with %08d messages.\n", num_messages);
+    }
+
 
 #if (STATIC_OPERANDS)
 
@@ -218,30 +216,6 @@ void get_operands(uint8_t *key, uint8_t *nonce, uint8_t *message)
   
 #endif
 
-  key = my_key;
-  nonce = my_nonce;
-  message = my_data;
-}
-
-
-//------------------------------------------------------------------
-// test_umac()
-//
-// perform num_messages of umac digest updates and digest
-// extractions using the same key and initial nonce.
-//------------------------------------------------------------------
-void test_umac(uint32_t num_messages)
-{
-  if (VERBOSE)
-    {
-      printf("Running test_umac with %08d messages.\n", num_messages);
-    }
-
-  uint8_t *my_key = NULL;
-  uint8_t *my_nonce = NULL;
-  uint8_t *my_data = NULL;
-
-  get_operands(my_key, my_nonce, my_data);
   
   struct umac128_ctx my_tx_ctx;
   struct umac128_ctx my_rx_ctx;
