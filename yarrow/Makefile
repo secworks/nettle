@@ -37,7 +37,7 @@
 #=======================================================================
 
 
-UMACTEST_SRC = yarrowtest.c
+YARROWTEST_SRC = yarrowtest.c
 NETTLE_INC_PATH = /usr/local/include/nettle
 NETTLE_LIB_PATH = /usr/local/lib
 NETTLE_LIB = nettle
@@ -49,8 +49,8 @@ TARGET = yarrowtest
 all: $(TARGET)
 
 
-$(TARGET):	$(UMACTEST_SRC)
-	$(CC) $(CFLAGS) -o $(TARGET) $(UMACTEST_SRC) -I$(NETTLE_INC_PATH) -L$(NETTLE_LIB_PATH) -l$(NETTLE_LIB)
+$(TARGET):	$(YARROWTEST_SRC)
+	$(CC) $(CFLAGS) -o $(TARGET) $(YARROWTEST_SRC) -I$(NETTLE_INC_PATH) -L$(NETTLE_LIB_PATH) -l$(NETTLE_LIB)
 
 
 #=======================================================================
