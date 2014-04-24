@@ -27,10 +27,12 @@
 //------------------------------------------------------------------
 #define VERBOSE 1
 #define SHOW_DIGESTS 0
-#define STATIC_OPERANDS 1
+#define STATIC_OPERANDS 0
+#define COMPARE_DIGESTS 1
 #define MAX_MESSAGES 100000000
 #define MESSAGE_SIZE 1024
 #define UMAC_NONCE_SIZE 16
+
 
 
 //------------------------------------------------------------------
@@ -258,9 +260,12 @@ void test_umac(uint32_t num_messages)
           printf("\n\n");
         }
 
-      if (strncmp((const char *)&my_tx_digest[0], (const char *)&my_rx_digest[0], UMAC128_DIGEST_SIZE) != 0)
+      if (COMPARE_DIGESTS)
         {
-          printf("Error: Digests does not match!\n");
+          if (strncmp((const char *)&my_tx_digest[0], (const char *)&my_rx_digest[0], UMAC128_DIGEST_SIZE) != 0)
+            {
+              printf("Error: Digests does not match!\n");
+            }
         }
     }
 }
