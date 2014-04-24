@@ -73,6 +73,7 @@ void print_data(uint32_t num_bytes, uint8_t *data)
           columns++;
         }
     }
+  
   printf("\n");
 }
 
@@ -101,7 +102,6 @@ int run_yarrow(uint32_t seed_size, uint8_t *seed_data, uint32_t num_bytes, uint8
       random_data[i] = rngdata;
     }
 
-  // All went well.
   return 0;
 }
 
@@ -129,15 +129,15 @@ uint8_t* get_seed_data(uint32_t num_seed_bytes)
   seed_data = (uint8_t *)calloc(num_seed_bytes, sizeof(uint8_t));
   if (NULL == seed_data)
     {
-      printf("Error: Memory allocation failed.\n");
-      exit(1);
+      fprintf(stderr, "Failed to allocate memory.\n");
+      exit(EXIT_FAILURE);
     }
 
   randomfp = fopen("/dev/random", "r");
   if (NULL == randomfp)
     {
-      printf("Error: Can't open random number device.\n");
-      exit(1);
+      fprintf(stderr, "Failed to open random number device.\n");
+      exit(EXIT_FAILURE);
     }
 
   for (i = 0 ; i < num_seed_bytes ; i++)
@@ -176,6 +176,11 @@ void test_yarrow()
   printf("--------------------------------\n");
   print_data(max_rng_bytes, &rng_data[0]);
   printf("\n");
+
+  free(seedptr);
+  seed_data = NULL;
+  free(rng_data);
+  rng_data = NULL;
 }
 
 
