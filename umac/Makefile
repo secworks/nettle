@@ -36,6 +36,7 @@
 #
 #=======================================================================
 
+KEYGEN_SRC = keygen.c keygen.h
 UMACTEST_SRC = umactest.c 
 
 NETTLE_INC_PATH = /usr/local/include/nettle
@@ -45,13 +46,23 @@ NETTLE_LIB = nettle
 CC = clang
 CFLAGS = -Wall -pedantic -O2
 
+OBJS = umactest.o keygen.o
 TARGET = umactest
 
 
 all: $(TARGET)
 
-$(TARGET):	$(UMACTEST_SRC)
-	$(CC) $(CFLAGS) -o $(TARGET) $(UMACTEST_SRC) -I$(NETTLE_INC_PATH) -L$(NETTLE_LIB_PATH) -l$(NETTLE_LIB)
+
+$(TARGET):	$(OBJS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS) -I$(NETTLE_INC_PATH) -L$(NETTLE_LIB_PATH) -l$(NETTLE_LIB)
+
+
+$(TARGET).o:	$(TARGET_SRC) $(KEYGEN_SRC)
+	$(CC) $(CFLAGS) -c $(UMACTEST_SRC) -I$(NETTLE_INC_PATH)
+
+
+keygen.o:	$(KEYGEN_SRC)
+	$(CC) $(CFLAGS) -c $(KEYGEN_SRC) -I$(NETTLE_INC_PATH)
 
 
 .PHONY: clean
