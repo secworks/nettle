@@ -194,7 +194,7 @@ void test_yarrow()
   printf("\n");
 
   free(seedptr);
-  seed_data = NULL;
+  seedptr = NULL;
   free(rng_data);
   rng_data = NULL;
 }
