@@ -26,9 +26,10 @@
 // Defines.
 //------------------------------------------------------------------
 #define VERBOSE 1
+#define SHOW_OPERANDS 0
 #define SHOW_DIGESTS 0
 #define COMPARE_DIGESTS 1
-#define MAX_MESSAGES 100000000
+#define NUM_MESSAGES 100000000
 #define MESSAGE_SIZE 1024
 #define UMAC_NONCE_SIZE 16
 
@@ -43,7 +44,7 @@ void test_umac(uint32_t num_messages)
 {
   if (VERBOSE)
     {
-      printf("Running test_umac with %08d messages.\n", num_messages);
+      printf("Running test_umac with %010d messages.\n", num_messages);
     }
 
   // We generate key, nonce and message using Yarrow.
@@ -75,6 +76,18 @@ void test_umac(uint32_t num_messages)
     }
   gen_key_bytes(MESSAGE_SIZE, my_data);
 
+  if (SHOW_OPERANDS)
+    {
+      printf("The generated key:\n");
+      print_data(UMAC_KEY_SIZE, my_key);
+
+      printf("The generated nonce:\n");
+      print_data(UMAC_NONCE_SIZE, my_nonce);
+
+      printf("The generated message:\n");
+      print_data(MESSAGE_SIZE, my_data);
+    }
+  
   
   // Now we do the actual test.
   struct umac128_ctx my_tx_ctx;
@@ -133,12 +146,14 @@ void test_umac(uint32_t num_messages)
 int main(void)
 {
   printf("Test of umac in nettle.\n");
+  printf("-----------------------\n");
 
-  test_umac(MAX_MESSAGES);
+  test_umac(NUM_MESSAGES);
+
+  printf("Test done.\n");
   
   return 0;
 }
-
 
 //======================================================================
 // EOF umactest.c
