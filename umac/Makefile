@@ -50,14 +50,14 @@ OBJS = umactest.o keygen.o
 TARGET = umactest
 
 
-all: $(TARGET) $(OBJS) 
+all: $(TARGET)
 
 
 $(TARGET):	$(OBJS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS) -I$(NETTLE_INC_PATH) -L$(NETTLE_LIB_PATH) -l$(NETTLE_LIB)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS) -L$(NETTLE_LIB_PATH) -l$(NETTLE_LIB)
 
 
-$(OBJS):	$(TARGET_SRC) $(KEYGEN_SRC)
+$(OBJS):	$(UMACTEST_SRC) $(KEYGEN_SRC)
 	$(CC) $(CFLAGS) -c $(UMACTEST_SRC) -I$(NETTLE_INC_PATH)
 	$(CC) $(CFLAGS) -c $(KEYGEN_SRC) -I$(NETTLE_INC_PATH)
 
