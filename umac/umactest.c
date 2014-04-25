@@ -22,6 +22,7 @@
 #include <umac.h>
 #include "keygen.h"
 
+
 //------------------------------------------------------------------
 // Defines.
 //------------------------------------------------------------------
@@ -44,7 +45,8 @@ void test_umac(uint32_t num_messages)
 {
   if (VERBOSE)
     {
-      printf("Running test_umac with %010d messages.\n", num_messages);
+      printf("Running test_umac with %010d messages, each %04d Bytes.\n",
+             num_messages, MESSAGE_SIZE);
     }
 
   // We generate key, nonce and message using Yarrow.
