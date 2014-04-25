@@ -44,7 +44,7 @@ NETTLE_LIB_PATH = /usr/local/lib
 NETTLE_LIB = nettle
 
 CC = clang
-CFLAGS = -Wall -pedantic -O2
+CFLAGS = -Wall -pedantic -O0
 
 OBJS = umactest.o keygen.o
 TARGET = umactest
