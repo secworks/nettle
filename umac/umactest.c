@@ -41,12 +41,11 @@
 // Side channel silent memory comparison used to check
 // digests.
 //------------------------------------------------------------------
-uint8_t silent_mem_equal(const uint8_t *op0, const uint8_t *op0, uint32_t len)
+uint8_t silent_mem_equal(const uint8_t *op0, const uint8_t *op1, uint32_t len)
 {
   volatile const uint8_t *a = op0;
   volatile const uint8_t *b = op1;
   volatile uint8_t match = 0;
-  uint32_t i;
 
   for (uint32_t i = 0 ; i < len ; i++)
     {
@@ -154,7 +153,7 @@ void test_umac(uint32_t num_messages)
 
       if (COMPARE_DIGESTS)
         {
-          if (strncmp((const char *)&my_tx_digest[0], (const char *)&my_rx_digest[0], UMAC128_DIGEST_SIZE) != 0)
+          if (silent_mem_equal(&my_tx_digest[0], &my_rx_digest[0], UMAC128_DIGEST_SIZE) != 0)
             {
               printf("Error: Digests does not match!\n");
             }
