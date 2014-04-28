@@ -36,6 +36,27 @@
 
 
 //------------------------------------------------------------------
+// silent_mem_equal()
+//
+// Side channel silent memory comparison used to check
+// digests.
+//------------------------------------------------------------------
+uint8_t silent_mem_equal(const uint8_t *op0, const uint8_t *op0, uint32_t len)
+{
+  volatile const uint8_t *a = op0;
+  volatile const uint8_t *b = op1;
+  volatile uint8_t match = 0;
+  uint32_t i;
+
+  for (uint32_t i = 0 ; i < len ; i++)
+    {
+      match |= a[i] ^ b[i];
+    }
+  return match == 0;
+}
+
+
+//------------------------------------------------------------------
 // test_umac()
 //
 // perform num_messages of umac digest updates and digest
