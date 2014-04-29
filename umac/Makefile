@@ -62,6 +62,11 @@ $(OBJS):	$(UMACTEST_SRC) $(KEYGEN_SRC)
 	$(CC) $(CFLAGS) -c $(KEYGEN_SRC) -I$(NETTLE_INC_PATH)
 
 
+.PHONY: timetest
+timetest:	$(TARGET)
+	time ./$(TARGET)
+
+
 .PHONY: clean
 clean:
 	rm $(TARGET)
@@ -72,8 +77,9 @@ clean:
 help:
 	@echo "Supported targets:"
 	@echo "------------------"
-	@echo "all:   Build all simulation targets."
-	@echo "clean: Delete all built files."
+	@echo "all:      Build all simulation targets."
+	@echo "timetest: Run timed execution of the targets."
+	@echo "clean:    Delete all built files."
 
 #=======================================================================
 # EOF Makefile
